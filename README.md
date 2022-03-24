@@ -2,16 +2,16 @@
 
 1. Commands to get Java Intermediate Code Generation
    ```
-      lex lex1.l<br/>
-      yacc -d java-yacc.y <br />
-      gcc lex.yy.c y.tab.c -ly -ll <br />
-      ./a.out < ex.java > icg.txt <br />
+      lex lex1.l
+      yacc -d java-yacc.y
+      gcc lex.yy.c y.tab.c -lfl -ll 
+      ./a.out < ex.java > icg.txt
     ```
   
 2. Commands to get C Intermediate Code Generation
     ```
-      yacc -d -v lexer.y <br />
-      lex parser.l <br />
-      gcc -ll -w y.tab.c <br/>
-      ./a.out<input1.c <br />
+      yacc -d -v parser.y
+      lex lexer.l
+      gcc y.tab.c -ll -w
+      ./a.out < input1.c
     ```
