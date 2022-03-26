@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int main(){
+    int a;
+    return 0;
+    // sdjbjsdfn
+    int i = 0;
+}
+
+int cp_main(){
+    int a;
+    return 0;
+    int i =0;
+}
+
+int cp1_main(){
+    int b;
+    return 1;
+}
