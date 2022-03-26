@@ -15,5 +15,5 @@ int cp_main(){
 
 int cp1_main(){
     int b;
-    return 1;
+    return 0;
 }
