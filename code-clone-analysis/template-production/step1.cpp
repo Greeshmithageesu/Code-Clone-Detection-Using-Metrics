@@ -52,4 +52,34 @@ unordered_map<string, vector<pair<int, vector<string>>>> returnTemplateCode(unor
         }
         templatecode[item.first] = temp;
     }
+    return templatecode;
+}
+
+int main(){
+    cout << endl << "************ MODULES ************" << endl << endl;
+
+    //initialise module to test
+    unordered_map<string, vector<pair<int, vector<string>>>> templatecode;
+
+    // vector<pair<int, vector<string>>> temp;
+    // vector<string> temp_;
+    // temp_.push_back("int");
+    // temp_.push_back("cp_main");
+    // temp_.push_back("(");
+    // temp_.push_back(")");
+    // temp_.push_back("{");
+    // temp.push_back(18,temp_);
+    // module["cp_main"] = 
+
+    for(auto item: templatecode){
+        cout << "name: " << item.first << endl;
+        for (int i = 0; i < item.second.size(); i++){
+            cout << i << " : " << item.second[i].first << " : ";
+            for (int j = 0; j < item.second[i].second.size(); j++){
+                cout << item.second[i].second[j] << ",";
+            }   
+            cout << endl;
+        }
+    }
+    cout << endl;
 }
