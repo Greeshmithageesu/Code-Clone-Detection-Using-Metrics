@@ -35,7 +35,10 @@ unordered_map<string, vector<pair<int, vector<string>>>> returnTemplateCode(unor
                     temp[i].second.push_back(item.second[i].second[j]);
                 }
                 else if(isAconst(item.second[i].second[j])){
-                    
+                    temp[i].second.push_back("CONST");
+                }
+                else{
+                    temp[i].second.push_back("X");
                 }
             }
         }
