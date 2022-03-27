@@ -15,7 +15,15 @@ bool belongsTo(string str, vector<string> container){
 
 //it could be 10, 13.4, 'a', "hello world"
 bool isAconst(string str){
+    regex dec("[0-9]*.[0-9]+");
+    regex numr ("[0-9]+");
+    regex chartr("'[a-zA-Z0-9]'");
+    regex strng("\"(.*)\"");
 
+    if(regex_match(str,dec) || regex_match(str,numr) || regex_match(str,chartr) || regex_match(str,strng)){
+        return true;
+    }
+    return false;
 }
 
 unordered_map<string, vector<pair<int, vector<string>>>> returnTemplateCode(unordered_map<string, vector<pair<int, vector<string>>>> module){
