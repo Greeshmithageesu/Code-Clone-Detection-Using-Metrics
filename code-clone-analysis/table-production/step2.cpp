@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const double threshold = 0.8;
+
 struct metrics{
     string name;
     int nLines = 0;
@@ -94,15 +96,42 @@ int getnVars(vector<pair<int, vector<string>>> &fun, int ind){
                 isData = true;
             }
             if(isData && (fun[i].second[j] == "X")){
-                if(((j+4)!=(fun[i].second.size()-1)) && (fun[i].second[j]=="CONST")){
-                    count += stoi(module[funNames[ind]][i].second[j]);
-                }
-                else
-                    count++;
+                // if(((j+4)!=(fun[i].second.size()-1)) && (fun[i].second[j]=="CONST")){
+                //     count += stoi(module[funNames[ind]][i].second[j]);
+                // }
+                // else
+                count++;
             }
         }
     }
     return count;
+}
+
+double calc(int a, int b){
+    return (abs(a-b))/(max(a, b)+0.0);
+}
+
+bool checkPairs(metrics m1, metrics m2){
+    int count = 0;
+    if(calc(m1.nArgs, m2.nArgs) >= threshold)
+        count++;
+    if(calc(m1.nConds, m2.nConds) >= threshold)
+        count++;
+    if(calc(m1.nFunCalls, m2.nFunCalls) >= threshold)
+        count++;
+    if(calc(m1.nLines, m2.nLines) >= threshold)
+        count++;
+    if(calc(m1.nLoops, m2.nLoops) >= threshold)
+        count++;
+    if(calc(m1.nReturn, m2.nReturn) >= threshold)
+        count++;
+    if(calc(m1.nVars, m2.nVars) >= threshold)
+        count++;
+    return count;
+}
+
+void printTable(metrics m){
+    printf("%10s%10s%10s%10s%10s%10s%10s%10s\n", m.name, m.nArgs, m.nVars, m.nConds, m.nLoops, m.nLines, m.nReturn);
 }
 
 int main(){
@@ -135,5 +164,27 @@ int main(){
         ind++;
 
         table.push_back(temp);
+    }
+
+
+    vector<pair<int, int>> candidatePairs;
+    for(int i=0; i<table.size(); i++){
+        for(int j=i+1; j<table.size(); j++){
+            if(checkPairs(table[i], table[j])){
+                candidatePairs.push_back({i, j});
+            }
+        }
+    }
+
+    cout << "******** TABLE *********" << endl;
+    printf("Name\t\t#Args\t\t#Vars\t\t#Conds\t\t#Loops\t\t#Lines\t\t#Return\n");
+    for(int i=0; i<table.size(); i++){
+        printTable(table[i]);
+    }
+
+
+    cout << "******** CANDIDATE PAIRS *********" << endl;
+    for(int i=0; i<candidatePairs.size(); i++){
+        cout << table[candidatePairs[i].first].name << " : " << table[candidatePairs[i].second].name << endl;
     }
 }
