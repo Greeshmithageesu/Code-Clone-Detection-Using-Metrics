@@ -1,27 +1,9 @@
-int main(){
-    int a;
-    return 0;
-    // sdjbjsdfn
-    int i = 0;
-}
+int abc(int a, int b){
+    int c = a + b;
+    return c;
 
-int main1(){
-    int a;
-    return 0;
-    // sdjbjsdfn
-    /*jsbvjs
-    jnfvnvion*/
-    int i = 0; /*khbdfjkvn
-    dfkjbjdnfjlvn*/
-}
-
-int cp_main(){
-    int a;
-    return 0;
-    int i =0;
-}
-
-int cp1_main(){
-    int a;
-    return 0;
+    int d, n, m, k, l;
+    return d;
+    return k;
+    return b;
 }

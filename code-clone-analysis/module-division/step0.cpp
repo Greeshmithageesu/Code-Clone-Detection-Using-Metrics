@@ -1,10 +1,13 @@
 #include<bits/stdc++.h>
+// #include "../template-production/step1.h"
+#include "../table-production/step2.h"
+
 using namespace std;
 
 vector<vector<string>> code;
 vector<pair<int, vector<string>>> codeTest;
 unordered_map<string, vector<pair<int, vector<string>>>> module;
-vector<string> keywords = {"int", "(", ")", "{", "}", "=", "+", ";", "#", "include", "bits/stdc++.h", "<<", ">>", "int", "return", "cout", "<", "endl", "cin", ">"}; 
+vector<string> keywords = {"int", "(", ")", "{", "}", "=", "+", ";", "#", "include", "bits/stdc++.h", "<<", ">>", "int", "return", "cout", "<", "endl", "cin", ">", ","}; 
 
 struct Tuple{
     string name;
@@ -155,6 +158,7 @@ void printModuleLocations(){
 void printModules(){
   cout << endl << "************ MODULES ************" << endl << endl;
 
+  // cout << module.size() << endl;
   for(auto item: module){
       cout << "name: " << item.first << endl;
       for (int i = 0; i < item.second.size(); i++){
@@ -171,9 +175,35 @@ void printModules(){
 
 int main () {
   divideIntoTokens();
-  printMatrix();
+  // printMatrix();
   getModules();
   printModuleLocations();
   printModules();
+
+  vector<pair<int, int>> candidatePairs;
+  unordered_map<string, vector<pair<int, vector<string>>>> templateCode;
+
+  templateCode = returnTemplateCode(module);
+  
+
+  cout << endl << "************ TEMPLATE MODULES ************" << endl << endl;
+
+  for(auto item: templateCode){
+        cout << "name: " << item.first << endl;
+        for (int i = 0; i < item.second.size(); i++){
+            cout << i << " : " << item.second[i].first << " : ";
+            for (int j = 0; j < item.second[i].second.size(); j++){
+                cout << item.second[i].second[j] << ",";
+            }   
+            cout << endl;
+        }
+    }
+
+    step1(templateCode);
+
+  candidatePairs = returnCandidatePairs(module, templateCode);
+
+  
+
   return 0;
 }
