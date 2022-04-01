@@ -1,0 +1,9 @@
+int abc(int a, int b){
+    int c = a + b;
+    return c;
+
+    int d, n, m, k, l;
+    return d;
+    return k;
+    return b;
+}
