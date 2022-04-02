@@ -2,7 +2,7 @@
 #include "../template-production/step1.h"
 using namespace std;
 
-const double threshold = 0.8;
+const double threshold = 0.85;
 
 struct metrics{
     string name;
@@ -82,7 +82,7 @@ int getnFunsLine(vector<string> &line){
 //counts #function calls in a function
 int getnFuns(vector<pair<int, vector<string>>> &fun){
     int count = 0;
-    for(int i=0; i<fun.size(); i++){
+    for(int i=1; i<fun.size(); i++){
         count += getnFunsLine(fun[i].second);
     }
     return count;
@@ -92,16 +92,21 @@ int getnVars(vector<pair<int, vector<string>>> &fun, int ind){
     int count=0;
     for(int i=1; i<fun.size(); i++){
         bool isData = false;
+        bool isComma = true;
         for(int j=0; j<fun[i].second.size(); j++){
             if(fun[i].second[j] == "DATA"){
                 isData = true;
             }
-            if(isData && (fun[i].second[j] == "X")){
+            else if(fun[i].second[j] == ","){
+                isComma = true;
+            }
+            else if(isData && isComma && (fun[i].second[j] == "X")){
                 // if(((j+4)!=(fun[i].second.size()-1)) && (fun[i].second[j]=="CONST")){
                 //     count += stoi(module[funNames[ind]][i].second[j]);
                 // }
                 // else
                 count++;
+                isComma = false;
             }
         }
     }
@@ -111,6 +116,8 @@ int getnVars(vector<pair<int, vector<string>>> &fun, int ind){
 double calc(int a, int b){
     if(a == b)
         return 1;
+    if(a == 0 || b == 0)
+        return 0;
 
     int hold = abs(a-b)/(max(max(a, b), 1)+0.0);
     // cout << hold << endl;
@@ -133,21 +140,34 @@ bool checkPairs(metrics m1, metrics m2){
         count++;
     if(calc(m1.nVars, m2.nVars) >= threshold)
         count++;
-    return count;
+    
+    if(count >= 5){
+        return true;
+    }
+    return false;
 }
 
 void printRow(metrics m){
     int w = 10;
     char sep = ' ';
-    cout << m.name << "\t";
+    cout << setw(10) << setfill(' ') <<  m.name;
     // cout << left << m.name << setw(w) << setfill(sep) << ;
-    printf("%10d%10d%10d%10d%10d%10d\n", m.nArgs, m.nVars, m.nConds, m.nLoops, m.nLines, m.nReturn);
+    printf("%10d%10d%10d%10d%10d%10d%10d\n", m.nArgs, m.nVars, m.nConds, m.nLoops, m.nLines, m.nFunCalls, m.nReturn);
 }
 
 void printTable(vector<metrics> table){
 
     cout << "******** TABLE *********" << endl;
-    printf("Name\t\t#Args\t#Vars\t#Conds\t\t#Loops\t#Lines\t\t#Return\n");
+    string name="Name", args="Args", vars="Vars", conds="Conds", loops="Loops", lines="Lines", funcalls="Funcalls", ret="Return";
+    cout << setw(10) << setfill(' ') << name;
+    cout << setw(10) << setfill(' ') << args;
+    cout << setw(10) << setfill(' ') << vars;
+    cout << setw(10) << setfill(' ') << conds;
+    cout << setw(10) << setfill(' ') << loops;
+    cout << setw(10) << setfill(' ') << lines;
+    cout << setw(10) << setfill(' ') << funcalls;
+    cout << setw(10) << setfill(' ') << ret;
+    cout << endl;
     for(int i=0; i<table.size(); i++){
         printRow(table[i]);
     }

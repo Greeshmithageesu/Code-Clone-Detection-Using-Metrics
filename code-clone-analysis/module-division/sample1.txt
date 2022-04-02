@@ -1,9 +1,15 @@
 int abc(int a, int b){
-    int c = a + b;
+    int c = a + b, n = 3;
     return c;
 
     int d, n, m, k, l;
     return d;
     return k;
+    return b;
+}
+
+int main(int a){
+    int b = a + 1;
+    int w, e, r, t, y=a+b, u=y+4, i, o;
     return b;
 }
