@@ -2,7 +2,7 @@
 #include "../template-production/step1.h"
 using namespace std;
 
-const double threshold = 0.85;
+const double threshold = 0.15;
 
 struct metrics{
     string name;
@@ -113,32 +113,34 @@ int getnVars(vector<pair<int, vector<string>>> &fun, int ind){
     return count;
 }
 
-double calc(int a, int b){
+bool calc(int a, int b){
     if(a == b)
-        return 1;
+        return true;
     if(a == 0 || b == 0)
-        return 0;
+        return false;
 
-    int hold = abs(a-b)/(max(max(a, b), 1)+0.0);
-    // cout << hold << endl;
-    return hold;
+    float hold = abs(a-b)/(max(max(a, b), 1)+0.0);
+    if(hold < threshold){
+        return true;
+    }
+    return false;
 }
 
 bool checkPairs(metrics m1, metrics m2){
     int count = 0;
-    if(calc(m1.nArgs, m2.nArgs) >= threshold)
+    if(calc(m1.nArgs, m2.nArgs))
         count++;
-    if(calc(m1.nConds, m2.nConds) >= threshold)
+    if(calc(m1.nConds, m2.nConds))
         count++;
-    if(calc(m1.nFunCalls, m2.nFunCalls) >= threshold)
+    if(calc(m1.nFunCalls, m2.nFunCalls))
         count++;
-    if(calc(m1.nLines, m2.nLines) >= threshold)
+    if(calc(m1.nLines, m2.nLines))
         count++;
-    if(calc(m1.nLoops, m2.nLoops) >= threshold)
+    if(calc(m1.nLoops, m2.nLoops))
         count++;
-    if(calc(m1.nReturn, m2.nReturn) >= threshold)
+    if(calc(m1.nReturn, m2.nReturn))
         count++;
-    if(calc(m1.nVars, m2.nVars) >= threshold)
+    if(calc(m1.nVars, m2.nVars))
         count++;
     
     if(count >= 5){
@@ -173,7 +175,7 @@ void printTable(vector<metrics> table){
     }
 }
 
-vector<pair<int, int>> returnCandidatePairs(unordered_map<string, vector<pair<int, vector<string>>>> tempModule, unordered_map<string, vector<pair<int, vector<string>>>> tempTemplateCode){
+vector<pair<string, string>> returnCandidatePairs(unordered_map<string, vector<pair<int, vector<string>>>> tempModule, unordered_map<string, vector<pair<int, vector<string>>>> tempTemplateCode){
 
     module1 = tempModule;
     templateCode = tempTemplateCode;
@@ -215,11 +217,11 @@ vector<pair<int, int>> returnCandidatePairs(unordered_map<string, vector<pair<in
 
     printTable(table);
 
-    vector<pair<int, int>> candidatePairs;
+    vector<pair<string, string>> candidatePairs;
     for(int i=0; i<table.size(); i++){
         for(int j=i+1; j<table.size(); j++){
             if(checkPairs(table[i], table[j])){
-                candidatePairs.push_back({i, j});
+                candidatePairs.push_back({table[i].name, table[j].name});
             }
         }
     }

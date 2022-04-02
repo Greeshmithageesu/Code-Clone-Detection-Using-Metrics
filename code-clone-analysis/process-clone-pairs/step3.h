@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-unordered_map<string, vector<pair<int, vector<string>>>> module;
+// unordered_map<string, vector<pair<int, vector<string>>>> module;
 
-int totalTokens = 0;
-int misMatchTokens = 0;
-float allowedProbability = 0.85;
+double isClonePair(string a, string b, unordered_map<string, vector<pair<int, vector<string>>>>& module){
+    int totalTokens = 0;
+    int misMatchTokens = 0;
+    float allowedProbability = 0.85;
 
-bool isClonePair(string a, string b){
     int i = module[a].size();
     int j = module[b].size();
     int idx_outer = 0;
@@ -49,9 +49,15 @@ bool isClonePair(string a, string b){
             totalTokens++;
         }
     }
-    float probabilityClone = (misMatchTokens/(totalTokens+0.0));
-    if(probabilityClone >= allowedProbability)
-        return true;
-    else
-        return false;
+
+    cout << misMatchTokens << " " << totalTokens << endl;
+
+    float probabilityClone = 1-(misMatchTokens/(totalTokens+0.0));
+    
+    return probabilityClone;
+
+    // if(probabilityClone >= allowedProbability)
+    //     return true;
+    // else
+    //     return false;
 }

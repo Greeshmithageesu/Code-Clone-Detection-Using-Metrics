@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 // #include "../template-production/step1.h"
 #include "../table-production/step2.h"
+#include "../process-clone-pairs/step3.h"
 
 using namespace std;
 
@@ -178,32 +179,36 @@ int main () {
   // printMatrix();
   getModules();
   printModuleLocations();
-  printModules();
+  // printModules();
 
-  vector<pair<int, int>> candidatePairs;
+  vector<pair<string, string>> candidatePairs;
   unordered_map<string, vector<pair<int, vector<string>>>> templateCode;
 
   templateCode = returnTemplateCode(module);
   
 
-  cout << endl << "************ TEMPLATE MODULES ************" << endl << endl;
+  // cout << endl << "************ TEMPLATE MODULES ************" << endl << endl;
 
-  for(auto item: templateCode){
-        cout << "name: " << item.first << endl;
-        for (int i = 0; i < item.second.size(); i++){
-            cout << i << " : " << item.second[i].first << " : ";
-            for (int j = 0; j < item.second[i].second.size(); j++){
-                cout << item.second[i].second[j] << ",";
-            }   
-            cout << endl;
-        }
-    }
+  // for(auto item: templateCode){
+  //       cout << "name: " << item.first << endl;
+  //       for (int i = 0; i < item.second.size(); i++){
+  //           cout << i << " : " << item.second[i].first << " : ";
+  //           for (int j = 0; j < item.second[i].second.size(); j++){
+  //               cout << item.second[i].second[j] << ",";
+  //           }   
+  //           cout << endl;
+  //       }
+  //   }
 
-    step1(templateCode);
+  step1(templateCode);
 
   candidatePairs = returnCandidatePairs(module, templateCode);
 
-  
+  for(int i=0; i<candidatePairs.size(); i++){
+    string fun1 = candidatePairs[i].first;
+    string fun2 = candidatePairs[i].second;
+    cout << "Matching Percentage " << fun1 << " " << fun2 << " " << isClonePair(fun1, fun2, module) << endl;
+  }
 
   return 0;
 }
