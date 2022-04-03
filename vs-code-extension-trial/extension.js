@@ -5,8 +5,8 @@ const { execFile } = require("child_process");
 
 const compiler = "g++";
 const out = "-o";
-const infile = "C:/Users/ruthv/vs-code-extension-trial/code-clone-analysis/module-division/step0.cpp";
-const outfile = "C:/Users/ruthv/vs-code-extension-trial/code-clone-analysis/module-division/step0";
+const infile = __dirname + "/code-clone-analysis/module-division/step0.cpp";
+const outfile = __dirname + "/code-clone-analysis/module-division/step0";
 const command = "hello world";
 
 /**
@@ -16,7 +16,9 @@ function activate(context) {
 	console.log('Congratulations, your extension "vs-code-extension-trial" is now active!');
 
 	let disposable = vscode.commands.registerCommand('vs-code-extension-trial.helloWorld', function () {
-		// vscode.window.showInformationMessage('Hello World from vs-code-extension-trial!');
+		vscode.window.showInformationMessage('Hello World from vs-code-extension-trial!');
+		console.log(__dirname);
+
 		let currFile = vscode.window.activeTextEditor.document.fileName;
 	  
 		console.log(currFile);

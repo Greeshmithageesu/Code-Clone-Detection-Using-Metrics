@@ -1,13 +1,14 @@
 #include<bits/stdc++.h>
 // #include "../template-production/step1.h"
 #include "../table-production/step2.h"
+#include "../process-clone-pairs/step3.h"
 
 using namespace std;
 
 vector<vector<string>> code;
 vector<pair<int, vector<string>>> codeTest;
 unordered_map<string, vector<pair<int, vector<string>>>> module;
-vector<string> keywords = {"int", "(", ")", "{", "}", "=", "+", ";", "#", "include", "bits/stdc++.h", "<<", ">>", "int", "return", "cout", "<", "endl", "cin", ">", ","}; 
+vector<string> keywords = {"int", "(", ")", "{", "}", "=", "+", "-" , ";", "#", "include", "bits/stdc++.h", "<<", ">>", "int", "return", "cout", "<", "endl", "cin", ">", ","}; 
 
 struct Tuple{
     string name;
@@ -46,6 +47,8 @@ string rem_cmt(string str){
             res+=str[i];
         }
     }
+
+
     return res;
 }
 
@@ -53,7 +56,7 @@ void divideIntoTokens(int argc, char *argv[]){
   string currLine;
   ifstream MyReadFile(argv[1]);
 
-  // ifstream MyReadFile("C:/Users/ruthv/vs-code-extension-trial/code-clone-analysis/module-division/sample1.txt");
+  // ifstream MyReadFile("sample1.txt");
   int multiLineComment = 0;
 
   int lineNumber = 0;
@@ -61,14 +64,13 @@ void divideIntoTokens(int argc, char *argv[]){
   while (getline (MyReadFile, currLine)) {
     lineNumber++;
     currLine = rem_cmt(currLine);
-    //cout << currLine;
     if(!currLine.size()){
         continue;
     }
     vector<string> line;
     string word = "";
     for(int i=0; i<currLine.size(); i++){
-      if (currLine[i] == ' '){
+      if (currLine[i] == ' ' or currLine[i] == '\t'){
         continue;
       }
       string tmp_string(1, currLine[i]);
@@ -173,15 +175,15 @@ void printModules(){
   cout << endl;
 }
 
-
 int main (int argc, char *argv[]) {
   divideIntoTokens(argc, argv);
-  // printMatrix();
+  printMatrix();
+  // modifyMatrix();
   getModules();
   printModuleLocations();
   printModules();
 
-  vector<pair<int, int>> candidatePairs;
+  vector<pair<string, string>> candidatePairs;
   unordered_map<string, vector<pair<int, vector<string>>>> templateCode;
 
   templateCode = returnTemplateCode(module);
@@ -200,11 +202,34 @@ int main (int argc, char *argv[]) {
         }
     }
 
-    step1(templateCode);
+  step1(templateCode);
 
   candidatePairs = returnCandidatePairs(module, templateCode);
 
-  
+  int len_candidatePairs = candidatePairs.size();
+  vector<double> type1_match(len_candidatePairs);
+  vector<double> type2_match(len_candidatePairs);
+
+  for(int i=0; i<candidatePairs.size(); i++){
+    string fun1 = candidatePairs[i].first;
+    string fun2 = candidatePairs[i].second;
+    type1_match[i] = isClonePair(fun1, fun2, module);
+    type2_match[i] = isClonePair(fun1, fun2, templateCode);
+  }
+
+  cout << "Matching Percentage of the Candidate Pairs for Type-1 Clones" << endl;
+  for(int i=0; i<len_candidatePairs; i++){
+    cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type1_match[i] << "%";
+    // printStars(type1_match[i]);
+  }
+  cout << endl;
+
+  cout << "Matching Percentage of the Candidate Pairs for Type-2 Clones" << endl;
+  for(int i=0; i<len_candidatePairs; i++){
+    cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
+    // printStars(type2_match[i]);
+  }
+  cout << endl;
 
   return 0;
 }

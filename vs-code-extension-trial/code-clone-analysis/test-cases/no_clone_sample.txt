@@ -1,0 +1,31 @@
+/* This sample will test whether it shows no clones,
+   when there are actually none */
+
+#include<stdio.h>
+
+/* Test for multi-line comments */
+int cp_main(){
+	int arr[100];
+	arr[0] = 1;
+
+	printf("%d", arr[0]);
+	return 0;
+}
+
+int add(int a, int b){
+	// This function adds two integers and returns the result
+	return a+b;
+}
+
+int cp_add(int arr[]){
+	return arr[0];
+}
+
+// Test for single line comments
+int main(){
+	int a = 1;
+	int b = 2;
+	int c = a + b;
+	printf("%d", c);
+	return 0;
+}
