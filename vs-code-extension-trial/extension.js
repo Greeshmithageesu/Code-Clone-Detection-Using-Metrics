@@ -7,21 +7,16 @@ const compiler = "g++";
 const out = "-o";
 const infile = __dirname + "/code-clone-analysis/module-division/step0.cpp";
 const outfile = __dirname + "/code-clone-analysis/module-division/step0";
-const command = "hello world";
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	console.log('Congratulations, your extension "vs-code-extension-trial" is now active!');
 
-	let disposable = vscode.commands.registerCommand('vs-code-extension-trial.helloWorld', function () {
-		vscode.window.showInformationMessage('Hello World from vs-code-extension-trial!');
-		console.log(__dirname);
+	let disposable = vscode.commands.registerCommand('vs-code-extension-trial.detectClones', function () {
+		vscode.window.showInformationMessage('Code Clone Detector is now active!');
 
 		let currFile = vscode.window.activeTextEditor.document.fileName;
-	  
-		console.log(currFile);
 
 		execFile(compiler, [infile, out, outfile], (err, stdout, stderr) => {
 			if (err) {

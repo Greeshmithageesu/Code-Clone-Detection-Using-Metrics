@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vs-code-extension-trial.helloWorld"
+    "onCommand:vs-code-extension-trial.detectClones"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vs-code-extension-trial.helloWorld",
-        "title": "Hello World"
+        "command": "vs-code-extension-trial.detectClones",
+        "title": "Clone Detector"
       }
     ]
   },
@@ -37,6 +37,9 @@
     "mocha": "^9.2.2",
     "typescript": "^4.5.5"
   },
+  "extensionDependencies": [
+    "esbenp.prettier-vscode"
+  ],
   "dependencies": {
     "path": "^0.12.7"
   }
