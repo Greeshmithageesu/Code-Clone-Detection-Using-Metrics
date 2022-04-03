@@ -13,6 +13,7 @@
 7. Detection of Type-1 and Type-2 Code Clones Using Textual Analysis and Metrics:-
 https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5460547&tag=1
 8. Based on the above paper we came up with an idea of simple textual analysis and a metric-based.
+<img src="https://github.com/RithikaSapparapu/Code-Clone-Detection-Using-Metrics/blob/master/images/2022-04-03.png" height="400" width="450"/>
 
 ## User guide and Features
 1. Clone this repository to local folder.
