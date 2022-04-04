@@ -40,8 +40,9 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5460547&tag=1
 ## Team Members
 1. B. Greeshmitha(CS19B004)
 2. Bobba Ruthvik(CS19B007)
-3. Suman P(CS19B039)
-4. Sapparapu Rithika(CS19B048)<br />
+3. Pavan Sriram G(CS19B018)
+4. Suman P(CS19B039)
+5. Sapparapu Rithika(CS19B048)<br />
 
 ## Links
 1. Github link: https://github.com/RithikaSapparapu/Code-Clone-Detection-Using-Metrics.git
