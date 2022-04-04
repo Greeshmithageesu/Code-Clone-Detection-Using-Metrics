@@ -46,7 +46,7 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5460547&tag=1
 
 ## Links
 1. Github link: https://github.com/RithikaSapparapu/Code-Clone-Detection-Using-Metrics.git
-2. Setup and demonstration video link: 
+2. Setup and demonstration video link: https://drive.google.com/file/d/1GBjLQX9sCuEqwPVTnxU1xSA96PijuLY_/view?usp=sharing
 
 ## References
 1. Detection of Type-1 and Type-2 Code Clones Using Textual Analysis and Metrics:-
