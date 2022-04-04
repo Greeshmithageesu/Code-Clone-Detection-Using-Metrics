@@ -26,6 +26,17 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5460547&tag=1
 7. Now in the command pallet, search for the command `Detect Clones` and press Enter.
 8. The clones present in the file and their matching percentage will be shown in the debug console.
 
+## R1 progress
+1. Used a very lightweight textual and metric based approach.
+2. Found code clones for Type-1 and Type-2.
+3. Generated an analysis report(based on percentage match of clone pairs) on debug console.
+
+## R2 goals
+1. We will add the Prettier extension and format the document  in the code itself.
+2. GUI will be added to show the Output.
+3. Code clones will be identified between multiple files.
+4. We will try to extend our project for some other types of clones.
+
 ## Team Members
 1. B. Greeshmitha(CS19B004)
 2. Bobba Ruthvik(CS19B007)
