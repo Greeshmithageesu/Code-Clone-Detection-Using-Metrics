@@ -3,11 +3,7 @@
 using namespace std;
 
 vector<string> datatypes = {"char","signed char","unsigned char","short","signed short","signed short int","unsigned short", "unsigned short int", "int", "signed int", "unsigned int", "long","signed long","signed long int", "unsigned long", "unsigned long int", "long long","long long int","signed long long","signed long long int","unsigned long long","unsigned long long int","float", "double", "long double"};
-<<<<<<< Updated upstream:code-clone-analysis/template-production/step1.h
 vector<string> symbols = {"(",")","{","}","[","]",";","=",",","+","-","/","%"};
-=======
-vector<string> symbols = {"(",")","{","}","[","]",";","=","+","-","/","%","*","==","!=", "<",">", ":"};
->>>>>>> Stashed changes:code-clone-analysis/template-production/step1.cpp
 bool belongsTo(string str, vector<string> container){
     for(int i=0; i<container.size(); i++){
         if(str == container[i]){
@@ -41,7 +37,6 @@ unordered_map<string, vector<pair<int, vector<string>>>> returnTemplateCode(unor
         vector<pair<int, vector<string>>> temp(item.second.size());
         for (int i = 0; i < item.second.size(); i++){
             temp[i].first = item.second[i].first;
-<<<<<<< Updated upstream:code-clone-analysis/template-production/step1.h
             // temp[i].second is the vector<string> part
 
             for(int j=0; j<item.second[i].second.size(); j++){
@@ -57,35 +52,6 @@ unordered_map<string, vector<pair<int, vector<string>>>> returnTemplateCode(unor
                 }
                 else{
                     temp[i].second.push_back("X");
-=======
-            //temp[i].second is the vector<string> part
-            if(item.second[i].second[0] == "while" | item.second[i].second[0] == "for"){
-                temp[i].second.push_back("LOOP");
-            }
-            else if(item.second[i].second[0] == "switch"){
-                temp[i].second.push_back("SWITCH");
-            }
-            else if(item.second[i].second[0] == "IF"){
-                temp[i].second.push_back("IF");
-            }
-            else if(item.second[i].second[0] == "else"){
-                temp[i].second.push_back("ELSE");
-            }
-            else{
-                for(int j=0; j<item.second[i].second.size(); j++){
-                    if(belongsTo(item.second[i].second[j],datatypes)){
-                        temp[i].second.push_back("DATA");
-                    }
-                    else if(belongsTo(item.second[i].second[j],symbols)){
-                        temp[i].second.push_back(item.second[i].second[j]);
-                    }
-                    else if(isAconst(item.second[i].second[j])){
-                        temp[i].second.push_back("CONST");
-                    }
-                    else{
-                        temp[i].second.push_back("X");
-                    }
->>>>>>> Stashed changes:code-clone-analysis/template-production/step1.cpp
                 }
             }
         }
