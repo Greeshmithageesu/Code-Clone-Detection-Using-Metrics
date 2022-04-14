@@ -116,7 +116,7 @@ int main()
     // cout << "\nSorted array is \n";
     // printArray(arr, arr_size);
 
-    ofstream myfile("test-case-1-merge-sort-cpp.txt");
+    ofstream myfile("output.txt");
     if (myfile.is_open())
     {
         for (int count = 0; count < n; count++)
