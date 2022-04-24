@@ -281,13 +281,17 @@ int main(int argc, char *argv[])
   ofstream myfile("co-ordinates.txt");
   if (myfile.is_open()){
     for (int i = 0; i < len_candidatePairs; i++){
-      cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
+      //cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
       string curr_line = "";
       curr_line += candidatePairs[i].first;
       curr_line += ",";
       curr_line += candidatePairs[i].second;
       curr_line += ",";
+      curr_line += type1_match[i];
+      curr_line += ",";
       curr_line += type2_match[i];
+      curr_line += ",";
+      curr_line += "50"; /* dummy value */
       myfile << curr_line << endl;
     }
     myfile.close();
