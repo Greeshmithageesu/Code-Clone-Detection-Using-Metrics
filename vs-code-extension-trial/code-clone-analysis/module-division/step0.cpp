@@ -221,6 +221,9 @@ int main(int argc, char *argv[])
   printModuleLocations();
   printModules();
 
+  string cwd = argv[2];
+  // cout << cwd << endl;
+
   vector<pair<string, string>> candidatePairs;
   unordered_map<string, vector<pair<int, vector<string>>>> templateCode;
 
@@ -268,17 +271,18 @@ int main(int argc, char *argv[])
   }
   cout << endl << endl;
 
-  // cout << "Matching Percentage of the Candidate Pairs for Type-2 Clones" << endl;
-  // for (int i = 0; i < len_candidatePairs; i++)
-  // {
-  //   cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
-  //   // printStars(type2_match[i]);
-  // }
-  // cout << endl;
+  cout << "Matching Percentage of the Candidate Pairs for Type-2 Clones" << endl;
+  for (int i = 0; i < len_candidatePairs; i++)
+  {
+    cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
+    // printStars(type2_match[i]);
+  }
+  cout << endl;
 
   /* new code from here */
-  cout << "Matching Percentage of the Candidate Pairs for Type-2 Clones" << endl;
-  ofstream myfile("co-ordinates.txt");
+  // cout << "Matching Percentage of the Candidate Pairs for Type-2 Clones" << endl;
+  ofstream myfile(cwd + "/code-clone-analysis/module-division/co-ordinates.txt");
+  // ../module-division/co-ordinates.txt
   if (myfile.is_open()){
     for (int i = 0; i < len_candidatePairs; i++){
       //cout << candidatePairs[i].first << " Vs " << candidatePairs[i].second << " = " << type2_match[i] << "%";
@@ -287,9 +291,9 @@ int main(int argc, char *argv[])
       curr_line += ",";
       curr_line += candidatePairs[i].second;
       curr_line += ",";
-      curr_line += type1_match[i];
+      curr_line += to_string(type1_match[i]);
       curr_line += ",";
-      curr_line += type2_match[i];
+      curr_line += to_string(type2_match[i]);
       curr_line += ",";
       curr_line += "50"; /* dummy value */
       myfile << curr_line << endl;
@@ -297,6 +301,10 @@ int main(int argc, char *argv[])
     myfile.close();
   }
   cout << endl;
+
+
+  string command = "python " + cwd + "/code-clone-analysis/module-division/step0.py " + cwd;
+  system(command.c_str());
 
   return 0;
 }

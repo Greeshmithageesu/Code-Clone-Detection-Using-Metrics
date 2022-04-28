@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+import sys
 
 # creating the dataset
 courses = []
@@ -8,7 +10,10 @@ type_2 = []
 type_3 = []
 
 # Using readline()
-file1 = open('myfile.txt', 'r')
+# file1 = open('../test-case-analysis-prototype/test-cases/'+sys.argv[1], 'r')
+cwd = sys.argv[1]
+file1 = open(cwd + '/code-clone-analysis/module-division/myfile.txt', 'r')
+# print(os.getcwd())
 
 while True:
     line = file1.readline()
