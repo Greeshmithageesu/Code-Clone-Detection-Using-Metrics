@@ -59,6 +59,7 @@ string rem_cmt(string str)
 
 void divideIntoTokens(int argc, char *argv[])
 {
+  
   string currLine;
   ifstream MyReadFile(argv[1]);
 
@@ -215,6 +216,7 @@ void printModules()
 
 int main(int argc, char *argv[])
 {
+  cout << argv[1] << endl;
   divideIntoTokens(argc, argv);
   printMatrix();
   getModules();
@@ -294,8 +296,8 @@ int main(int argc, char *argv[])
       curr_line += to_string(type1_match[i]);
       curr_line += ",";
       curr_line += to_string(type2_match[i]);
-      curr_line += ",";
-      curr_line += "50"; /* dummy value */
+      // curr_line += ",";
+      // curr_line += "0"; /* dummy value */
       myfile << curr_line << endl;
     }
     myfile.close();
@@ -305,6 +307,13 @@ int main(int argc, char *argv[])
 
   string command = "python " + cwd + "/code-clone-analysis/module-division/step0.py " + cwd;
   system(command.c_str());
+
+// cout << cwd << endl;
+  command = "g++ " + cwd + "/code-clone-analysis/Type3/type3.cpp -o " + cwd + "/code-clone-analysis/Type3/type3";
+  system(command.c_str());
+  command = cwd + "/code-clone-analysis/Type3/type3 " + argv[1] + " " + argv[2];
+  system(command.c_str());
+  // cout  << "HELLO" << endl;
 
   return 0;
 }

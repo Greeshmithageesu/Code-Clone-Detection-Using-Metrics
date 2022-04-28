@@ -5,14 +5,12 @@ import sys
 
 # creating the dataset
 courses = []
-type_1 = []
-type_2 = []
-# type_3 = []
+type_3 = []
 
 # Using readline()
 # file1 = open('../test-case-analysis-prototype/test-cases/'+sys.argv[1], 'r')
 cwd = sys.argv[1]
-file1 = open(cwd + '/code-clone-analysis/module-division/co-ordinates.txt', 'r')
+file1 = open(cwd + '/code-clone-analysis/Type3/co-ordinates.txt', 'r')
 # print(os.getcwd())
 
 while True:
@@ -25,8 +23,7 @@ while True:
     course_item = x[0]+" vs "+x[1]
     # print(course_item)
     courses.append(course_item)
-    type_1.append(float(x[2]))
-    type_2.append(float(x[3]))
+    type_3.append(float(x[2]))
     # type_3.append(float(x[4]))
     # print(x)
 
@@ -34,9 +31,7 @@ while True:
 file1.close()
 
 print(courses)
-print(type_1)
-print(type_2)
-# print(type_3)
+print(type_3)
 
   
 # fig = plt.figure(figsize = (10, 5))
@@ -63,22 +58,20 @@ fig = plt.subplots(figsize =(12, 8))
 # CSE = [29, 3, 24, 25, 17]
 
 # Set position of bar on X axis
-br1 = np.arange(len(type_1))
-br2 = [x + barWidth for x in br1]
-br3 = [x + barWidth for x in br2]
+br1 = np.arange(len(type_3))
 
 # Make the plot
-plt.bar(br1, type_1, color ='r', width = barWidth,
-		edgecolor ='grey', label ='type-1')
-plt.bar(br2, type_2, color ='g', width = barWidth,
-		edgecolor ='grey', label ='type-2')
+plt.bar(br1, type_3, color ='r', width = barWidth,
+		edgecolor ='grey', label ='type-3')
+# plt.bar(br2, type_2, color ='g', width = barWidth,
+# 		edgecolor ='grey', label ='type-2')
 # plt.bar(br3, type_3, color ='b', width = barWidth,
 # 		edgecolor ='grey', label ='type-3')
 
 # Adding Xticks
 plt.xlabel('Clone Pairs Detected', fontweight ='bold', fontsize = 15)
 plt.ylabel('Percentage match', fontweight ='bold', fontsize = 15)
-plt.xticks([r + barWidth for r in range(len(type_1))], courses)
+plt.xticks([r + barWidth for r in range(len(type_3))], courses)
 
 plt.legend()
 plt.show()

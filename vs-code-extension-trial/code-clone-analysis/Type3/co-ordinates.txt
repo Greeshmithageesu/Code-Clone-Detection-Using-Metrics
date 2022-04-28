@@ -1,0 +1,6 @@
+main,cp_add,0.642857
+main,cp_main,0.693878
+main,add,0.720000
+cp_add,cp_main,0.785714
+cp_add,add,0.960000
+cp_main,add,0.760000

@@ -3,21 +3,6 @@
 
 #include<stdio.h>
 
-/* Test for multi-line comments */
-int cp_main(){
-	int d = 1;
-	int e = 2;
-	int c = d + e;
-
-	printf("%d", c);
-	return c;
-}
-
-int add(int a, int b){
-	// This function adds two integers and returns the result
-	return a+b;
-}
-
 int cp_add(int c, int d){
 	return c - d;
 }
