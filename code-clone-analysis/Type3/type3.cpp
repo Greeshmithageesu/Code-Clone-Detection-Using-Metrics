@@ -505,8 +505,8 @@ void printTable(vector<metrics> table){
     cout << setw(10) << setfill(' ') << lines;
     cout << setw(10) << setfill(' ') << funcalls;
     cout << setw(10) << setfill(' ') << ret;
-    cout << setw(10) << setfill(' ') << "Inputs";
-    cout << setw(10) << setfill(' ') << "Outputs";
+   // cout << setw(10) << setfill(' ') << "Inputs";
+   // cout << setw(10) << setfill(' ') << "Outputs";
     cout << endl;
     for(int i=0; i<table.size(); i++){
         printRow(table[i]);
