@@ -1,0 +1,64 @@
+html, body{
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: rgb(90, 90, 105);
+}
+
+.container{
+  max-width: 100%;
+}
+
+.App{
+  padding: 10px;
+  display: flex;
+  color: rgb(0, 0, 0);
+  /* background-color: rgb(24, 113, 222); */
+  height: 100vh;
+}
+
+.headerCard{
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgb(51, 49, 59);
+}
+
+.leftCard{
+  margin: 10px;
+  margin-right: 0;
+  height: 85vh;
+  background-color: rgb(51, 49, 59);
+}
+
+.rightCard{
+  margin: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  height: 55vh;
+  overflow: hidden;
+  background-color: rgb(51, 49, 59);
+
+  color: white;
+}
+
+.bottomCard{
+  height: 28.5vh;
+  background-color: rgb(51, 49, 59);
+  color: white;
+}
+
+.item{
+  background-color: rgb(90, 90, 105);
+  color: white;
+}
+
+.button{
+  background-color: rgb(58, 58, 72);
+}
