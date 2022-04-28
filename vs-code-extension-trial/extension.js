@@ -34,6 +34,8 @@ function activate(context) {
 			}
 		});
 
+		// vscode.Uri.call("http://localhost:3000/");
+		vscode.env.openExternal(vscode.Uri.parse('http://localhost:3000/'));
 	});
 
 	context.subscriptions.push(disposable);
